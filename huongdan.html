@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Hướng Dẫn Nghi Thức Đội</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #e8f0fe;
+      padding: 20px;
+      text-align: center;
+    }
+    h1 {
+      color: #2c3e50;
+    }
+    #demo {
+      width: 300px;
+      height: 400px;
+      margin: 20px auto;
+      background-color: #fff;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+    }
+    .controls {
+      margin-top: 20px;
+    }
+    button {
+      padding: 10px 15px;
+      margin: 5px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    #description {
+      margin-top: 30px;
+      background: #fff;
+      padding: 15px;
+      border-radius: 10px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Hướng Dẫn Động Tác Nghi Thức Đội</h1>
+  <div id="demo" style="background-image: url('https://i.imgur.com/oZ4r4XZ.png');"></div>
+
+  <div class="controls">
+    <button onclick="show('nghiem')">Đứng nghiêm</button>
+    <button onclick="show('nghi')">Đứng nghỉ</button>
+    <button onclick="show('quayphai')">Quay phải</button>
+    <button onclick="show('quaytrai')">Quay trái</button>
+    <button onclick="show('quaysau')">Quay sau</button>
+    <button onclick="show('tiến')">Tiến bước</button>
+    <button onclick="show('lùi')">Lùi bước</button>
+  </div>
+
+  <div id="description"></div>
+
+  <script>
+    const data = {
+      nghi: {
+        img: "https://i.imgur.com/6OC8VhD.png",
+        text: "🗣 Khẩu lệnh: “Nghỉ!”<br>✅ Người ở tư thế đứng nghiêm, hai tay thả lỏng, chân trái hơi chùng, dồn trọng tâm vào chân phải."
+      },
+      nghiem: {
+        img: "https://i.imgur.com/oZ4r4XZ.png",
+        text: "🗣 Khẩu lệnh: “Nghiêm!”<br>✅ Đứng thẳng, mắt nhìn thẳng, hai tay thẳng khép sát thân người, chân khép hình chữ V, bàn tay nắm tự nhiên."
+      },
+      quayphai: {
+        img: "https://i.imgur.com/3e7GQz4.png",
+        text: "🗣 Khẩu lệnh: “Bên phải – quay!”<br>✅ Gót chân phải làm trụ, mũi chân trái xoay, quay 90°, rút chân trái về tư thế nghiêm."
+      },
+      quaytrai: {
+        img: "https://i.imgur.com/NPqUoC3.png",
+        text: "🗣 Khẩu lệnh: “Bên trái – quay!”<br>✅ Gót chân trái làm trụ, mũi chân phải xoay, quay 90°, rút chân phải về tư thế nghiêm."
+      },
+      quaysau: {
+        img: "https://i.imgur.com/kd0SZR3.png",
+        text: "🗣 Khẩu lệnh: “Đằng sau – quay!”<br>✅ Gót chân phải làm trụ, mũi chân trái xoay, quay người 180°, rút chân trái về tư thế nghiêm."
+      },
+      tiến: {
+        img: "https://i.imgur.com/ru9x8QK.png",
+        text: "🗣 Khẩu lệnh: “Tiến… bước – bước!”<br>✅ Bắt đầu bằng chân trái, bước đều theo số bước hô, xong trở về tư thế nghiêm."
+      },
+      lùi: {
+        img: "https://i.imgur.com/NzH8XL1.png",
+        text: "🗣 Khẩu lệnh: “Lùi… bước – bước!”<br>✅ Bắt đầu bằng chân trái, bước lùi về sau, xong trở lại tư thế nghiêm."
+      }
+    };
+
+    function show(action) {
+      const info = data[action];
+      document.getElementById('demo').style.backgroundImage = `url('${info.img}')`;
+      document.getElementById('description').innerHTML = info.text;
+    }
+  </script>
+
+</body>
+</html>
