@@ -15,8 +15,8 @@
     <a-scene embedded arjs>
         <!-- Định nghĩa Marker với pattern đã tạo -->
         <a-marker type="pattern" url="marker.patt">
-            <!-- Video sẽ xuất hiện khi marker được quét -->
-            <a-video src="doanvien.mp4" width="5" height="3" position="0 0 0"></a-video>
+            <!-- Video sẽ xuất hiện khi marker được quét, thêm thuộc tính autoplay để video tự động phát -->
+            <a-video src="doanvien.mp4" width="5" height="3" position="0 0 0" autoplay="true" loop="true" sound="src: url(doanvien.mp4); autoplay: true; volume: 1;"></a-video>
         </a-marker>
 
         <!-- Đặt Camera và ánh sáng cho AR -->
