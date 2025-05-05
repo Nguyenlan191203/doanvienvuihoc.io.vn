@@ -1,45 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AR.js Video Marker</title>
+<html>
+  <head>
+    <title>AR Video - Đoàn viên vui học</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.rawgit.com/jeromeetienne/ar.js/2.0.0/aframe/build/aframe-ar.min.js"></script>
+  </head>
+  <body style="margin: 0; overflow: hidden">
+    <a-scene embedded arjs="sourceType: webcam;">
+      <!-- Tạo marker từ file .patt bạn đã reset -->
+      <a-marker type="pattern" url="marker.patt">
+        <a-video 
+          src="#video" 
+          width="2" 
+          height="1" 
+          position="0 0 0"
+          rotation="-90 0 0"
+          autoplay
+          loop>
+        </a-video>
+      </a-marker>
 
-  <!-- A-Frame -->
-  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-  <!-- AR.js -->
-  <script src="https://cdn.jsdelivr.net/npm/ar.js@3.4.2/aframe/build/aframe-ar.js"></script>
-</head>
-<body style="margin: 0; overflow: hidden;">
+      <!-- Gắn camera -->
+      <a-entity camera></a-entity>
 
-  <a-scene embedded arjs>
-
-    <!-- Marker -->
-    <a-marker type="pattern" url="marker.patt">
-      <a-video 
-        src="#vid" 
-        width="1" height="0.6"  <!-- Kích thước vừa với ảnh in ra (đơn vị mét) -->
-        position="0 0.01 0"     <!-- Nằm sát mặt marker, nâng nhẹ lên 0.01 để không bị chồng -->
-        rotation="-90 0 0"      <!-- Đặt ngang trên mặt marker -->
-        autoplay 
-        loop>
-      </a-video>
-    </a-marker>
-
-    <!-- Nguồn video -->
-    <a-assets>
-      <video id="vid" src="doanvien.mp4" preload="auto" crossorigin="anonymous" playsinline webkit-playsinline></video>
-    </a-assets>
-
-    <a-entity camera></a-entity>
-  </a-scene>
-
-  <script>
-    // Tự phát video sau tương tác người dùng (bắt buộc với âm thanh)
-    document.addEventListener("click", () => {
-      const vid = document.getElementById("vid");
-      if (vid && vid.paused) vid.play();
-    });
-  </script>
-</body>
+      <!-- Video định nghĩa -->
+      <video id="video" src="doanvien.mp4" preload="auto" crossorigin="anonymous"></video>
+    </a-scene>
+  </body>
 </html>
