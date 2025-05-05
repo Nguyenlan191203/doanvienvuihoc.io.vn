@@ -1,49 +1,50 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>AR Marker Đoàn viên</title>
+    <meta charset="utf-8">
+    <title>AR Đoàn viên</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.rawgit.com/jeromeetienne/ar.js/2.2.1/aframe/build/aframe-ar.min.js"></script>
     <style>
-      body, html { margin: 0; overflow: hidden; }
+      body, html {
+        margin: 0;
+        overflow: hidden;
+      }
     </style>
   </head>
   <body>
-    <a-scene embedded arjs>
-      <!-- AR Marker -->
-      <a-marker type="pattern" url="pattern-BIỂU TƯỢNG.patt">
-        <!-- Video Plane -->
+    <a-scene embedded arjs="sourceType: webcam;">
+      
+      <!-- Tài sản video -->
+      <a-assets>
+        <video id="doanVideo" src="doanvien.mp4" preload="auto" loop crossorigin="anonymous"></video>
+      </a-assets>
+
+      <!-- Marker -->
+      <a-marker type="pattern" url="marker.patt">
         <a-video 
-          src="#doanVideo"
-          width="2" height="1"
-          position="0 0.5 0"
+          src="#doanVideo" 
+          width="2" 
+          height="1.125" 
+          position="0 0 0" 
           rotation="-90 0 0">
         </a-video>
       </a-marker>
 
       <!-- Camera -->
       <a-entity camera></a-entity>
-
-      <!-- Video Asset -->
-      <a-assets>
-        <video id="doanVideo" src="Áo xanh nắng mới.mp4" preload="auto" loop="true" crossorigin="anonymous"></video>
-      </a-assets>
     </a-scene>
 
     <script>
-      // Tự động phát video khi marker được quét
-      document.querySelector('a-marker').addEventListener('markerFound', function () {
-        var video = document.querySelector("#doanVideo");
-        if (video) {
-          video.play();
-        }
+      const marker = document.querySelector('a-marker');
+      const video = document.querySelector("#doanVideo");
+
+      marker.addEventListener('markerFound', () => {
+        video.play();
       });
 
-      document.querySelector('a-marker').addEventListener('markerLost', function () {
-        var video = document.querySelector("#doanVideo");
-        if (video) {
-          video.pause();
-        }
+      marker.addEventListener('markerLost', () => {
+        video.pause();
       });
     </script>
   </body>
