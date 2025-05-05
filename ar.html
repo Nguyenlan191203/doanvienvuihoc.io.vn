@@ -1,27 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AR.js Video Marker</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AR.js Video Marker</title>
 
-    <!-- Thêm A-Frame -->
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <!-- Thêm AR.js cho A-Frame -->
-    <script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script>
+  <!-- A-Frame -->
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  <!-- AR.js -->
+  <script src="https://cdn.jsdelivr.net/npm/ar.js@3.4.2/aframe/build/aframe-ar.js"></script>
 </head>
 <body style="margin: 0; overflow: hidden;">
 
-    <a-scene embedded arjs>
-        <!-- Định nghĩa Marker với pattern đã tạo -->
-        <a-marker type="pattern" url="marker.patt">
-            <!-- Video sẽ xuất hiện khi marker được quét, thêm thuộc tính autoplay để video tự động phát -->
-            <a-video src="doanvien.mp4" width="5" height="3" position="0 0 0" autoplay="true" loop="true" sound="src: url(doanvien.mp4); autoplay: true; volume: 1;"></a-video>
-        </a-marker>
+  <a-scene embedded arjs>
 
-        <!-- Đặt Camera và ánh sáng cho AR -->
-        <a-entity camera></a-entity>
-    </a-scene>
+    <!-- Marker -->
+    <a-marker type="pattern" url="marker.patt">
+      <a-video 
+        src="#vid" 
+        width="1" height="0.6"  <!-- Kích thước vừa với ảnh in ra (đơn vị mét) -->
+        position="0 0.01 0"     <!-- Nằm sát mặt marker, nâng nhẹ lên 0.01 để không bị chồng -->
+        rotation="-90 0 0"      <!-- Đặt ngang trên mặt marker -->
+        autoplay 
+        loop>
+      </a-video>
+    </a-marker>
 
+    <!-- Nguồn video -->
+    <a-assets>
+      <video id="vid" src="doanvien.mp4" preload="auto" crossorigin="anonymous" playsinline webkit-playsinline></video>
+    </a-assets>
+
+    <a-entity camera></a-entity>
+  </a-scene>
+
+  <script>
+    // Tự phát video sau tương tác người dùng (bắt buộc với âm thanh)
+    document.addEventListener("click", () => {
+      const vid = document.getElementById("vid");
+      if (vid && vid.paused) vid.play();
+    });
+  </script>
 </body>
 </html>
